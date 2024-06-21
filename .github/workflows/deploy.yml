@@ -27,7 +27,7 @@ jobs:
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
   prod:
-    depends-on: [dev]
+    needs: [dev]
     name: Prod
     environment: prod
     runs-on: ubuntu-latest
