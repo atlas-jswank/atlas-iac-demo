@@ -46,6 +46,6 @@ jobs:
       - uses: pulumi/actions@v5
         with:
           command: up
-          stack-name: dev2
+          stack-name: prod
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
