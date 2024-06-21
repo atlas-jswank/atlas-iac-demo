@@ -1,0 +1,4 @@
+config:
+  aws-serverless-pulumi:code: ./api
+  aws-serverless-pulumi:path: ./ui/dist
+  aws:region: us-west-2
