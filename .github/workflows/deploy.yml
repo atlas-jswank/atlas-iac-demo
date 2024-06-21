@@ -6,7 +6,9 @@ on:
 jobs:
   dev:
     name: Dev
-    environment: dev
+    environment:
+      name: dev
+      url: ${{ steps.pulumi.outputs.url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +22,8 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - run: npm install
-      - uses: pulumi/actions@v5
+      - id: pulumi
+        uses: pulumi/actions@v5
         with:
           command: up
           stack-name: dev2
@@ -29,7 +32,9 @@ jobs:
   prod:
     needs: [dev]
     name: Prod
-    environment: prod
+    environment:
+      name: prod
+      url: ${{ steps.pulumi.outputs.url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,7 +48,8 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - run: npm install
-      - uses: pulumi/actions@v5
+      - id: pulumi
+        uses: pulumi/actions@v5
         with:
           command: up
           stack-name: prod
