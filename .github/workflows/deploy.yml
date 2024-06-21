@@ -1,11 +1,11 @@
-name: Pulumi
+name: Deploy
 on:
   push:
     branches:
       - main
 jobs:
   update:
-    name: Deploy Dev
+    name: Dev
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
