@@ -1,0 +1,5 @@
+config:
+  atlas-live-code-demo:errorDocument: error.html
+  atlas-live-code-demo:indexDocument: index.html
+  atlas-live-code-demo:path: ./ui/dist
+  aws:region: us-west-2
