@@ -6,7 +6,8 @@
     },
     "dependencies": {
         "@pulumi/aws": "^6.0.2",
-        "@pulumi/synced-folder": "^0.0.9",
-        "@pulumi/pulumi": "^3.113.0"
+        "@pulumi/azure-native": "^2.47.1",
+        "@pulumi/pulumi": "^3.113.0",
+        "@pulumi/synced-folder": "^0.0.9"
     }
 }
