@@ -118,7 +118,7 @@ function App() {
 
   return (
     <div>
-      <h1>Hello Atlas</h1>
+      <h1>Hello Azure</h1>
       <Board>
         {gameState.map((row, r) => (
           <BoardRow key={r + row.join("")}>
