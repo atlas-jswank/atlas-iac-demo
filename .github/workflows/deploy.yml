@@ -6,7 +6,6 @@ on:
 jobs:
   dev:
     name: Dev
-    needs: [test]
     environment:
       name: dev
       url: ${{ steps.pulumi.outputs.url }}
