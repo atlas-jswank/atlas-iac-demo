@@ -8,7 +8,7 @@ jobs:
     name: Dev
     environment:
       name: dev
-      url: ${{ steps.pulumi.outputs.url }}
+      url: ${{ steps.pulumi.outputs.originURL }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
     name: Prod
     environment:
       name: prod
-      url: ${{ steps.pulumi.outputs.url }}
+      url: ${{ steps.pulumi.outputs.originURL }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
