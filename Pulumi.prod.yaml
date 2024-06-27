@@ -1,5 +1,0 @@
-config:
-  aws:region: us-west-2
-  demo-1:errorDocument: index.html
-  demo-1:indexDocument: index.html
-  demo-1:path: ./ui/dist
