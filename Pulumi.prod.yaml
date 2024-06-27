@@ -1,0 +1,5 @@
+config:
+  aws:region: us-west-2
+  live-code:errorDocument: index.html
+  live-code:indexDocument: index.html
+  live-code:path: ./ui/dist
