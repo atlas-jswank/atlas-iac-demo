@@ -1,5 +1,5 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as aws from "@pulumi/aws";
+// import * as aws from "@pulumi/aws";
 import * as synced_folder from "@pulumi/synced-folder";
 import * as azure from "@pulumi/azure-native";
 
@@ -9,48 +9,48 @@ const path = config.get("path") || "./www";
 const indexDocument = config.get("indexDocument") || "index.html";
 const errorDocument = config.get("errorDocument") || "error.html";
 
-// Create an S3 bucket and configure it as a website.
-const bucket = new aws.s3.Bucket("bucket", {
-  website: {
-    indexDocument: indexDocument,
-    errorDocument: errorDocument,
-  },
-});
+// // Create an S3 bucket and configure it as a website.
+// const bucket = new aws.s3.Bucket("bucket", {
+//   website: {
+//     indexDocument: indexDocument,
+//     errorDocument: errorDocument,
+//   },
+// });
 
-// Configure ownership controls for the new S3 bucket
-const ownershipControls = new aws.s3.BucketOwnershipControls(
-  "ownership-controls",
-  {
-    bucket: bucket.bucket,
-    rule: {
-      objectOwnership: "ObjectWriter",
-    },
-  }
-);
+// // Configure ownership controls for the new S3 bucket
+// const ownershipControls = new aws.s3.BucketOwnershipControls(
+//   "ownership-controls",
+//   {
+//     bucket: bucket.bucket,
+//     rule: {
+//       objectOwnership: "ObjectWriter",
+//     },
+//   }
+// );
 
-// Configure public ACL block on the new S3 bucket
-const publicAccessBlock = new aws.s3.BucketPublicAccessBlock(
-  "public-access-block",
-  {
-    bucket: bucket.bucket,
-    blockPublicAcls: false,
-  }
-);
+// // Configure public ACL block on the new S3 bucket
+// const publicAccessBlock = new aws.s3.BucketPublicAccessBlock(
+//   "public-access-block",
+//   {
+//     bucket: bucket.bucket,
+//     blockPublicAcls: false,
+//   }
+// );
 
-// Use a synced folder to manage the files of the website.
-const bucketFolder = new synced_folder.S3BucketFolder(
-  "bucket-folder",
-  {
-    path: path,
-    bucketName: bucket.bucket,
-    acl: "public-read",
-  },
-  { dependsOn: [ownershipControls, publicAccessBlock] }
-);
+// // Use a synced folder to manage the files of the website.
+// const bucketFolder = new synced_folder.S3BucketFolder(
+//   "bucket-folder",
+//   {
+//     path: path,
+//     bucketName: bucket.bucket,
+//     acl: "public-read",
+//   },
+//   { dependsOn: [ownershipControls, publicAccessBlock] }
+// );
 
-// Export the URLs and hostnames of the bucket and distribution.
-export const originURL = pulumi.interpolate`http://${bucket.websiteEndpoint}`;
-export const originHostname = bucket.websiteEndpoint;
+// // Export the URLs and hostnames of the bucket and distribution.
+// export const originURL = pulumi.interpolate`http://${bucket.websiteEndpoint}`;
+// export const originHostname = bucket.websiteEndpoint;
 
 // Create a resource group for the website.
 const resourceGroup = new azure.resources.ResourceGroup("resource-group", {
